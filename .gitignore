@@ -63,3 +63,11 @@ coverage/
 #webpack output
 bundle.js
 bundle.js.map
+
+#datageneration
+faked1.json
+
+
+
+
+
