@@ -31,7 +31,6 @@ class Overview extends React.Component {
 
     axios.get(`/api/restaurants/${id}/overview`)
       .then((response) => {
-        console.log(response)
         this.handleRestaurantChange(response.data[0]);
       })
       .catch((err) => {
@@ -41,7 +40,6 @@ class Overview extends React.Component {
 
   handleRestaurantChange(restaurantDetails) {
     let priceLevelInDollars = '';
-    console.log('hi')
     const priceLevel = restaurantDetails.priceLevel || 1;
     for (let i = 0; i < priceLevel; i += 1) {
       priceLevelInDollars += '$';
