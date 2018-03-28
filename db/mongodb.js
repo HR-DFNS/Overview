@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const restaurantSchema = mongoose.Schema({
-  id: Number,
+  _id: Number,
   name: String,
   tagline: String,
   type: String,
@@ -16,7 +16,7 @@ const restaurantSchema = mongoose.Schema({
 const RestaurantModel = mongoose.model('restaurants', restaurantSchema);
 
 const findOneById = (id, callback) => {
-  RestaurantModel.find({id:id}, callback);
+  RestaurantModel.find({_id:id}, callback);
 };
 
 const insertMany = (restaurant, callback) => {
