@@ -1,22 +1,27 @@
+// const getTopRated = require('../server/redisCache.js')
 
 
-const getOneHundredIDs = function() {
-  for (var i = 0; i <= 100; i++) {
-    console.log('- ' + Math.floor(Math.random() * 10000000 + 1))
-  }
-}
-
-function getTopRestaurnats(userContext, events, done) {
-  // generate data with Faker:
-  const name = `${Faker.name.firstName()} ${Faker.name.lastName()}`;
-  const email = Faker.internet.exampleEmail();
-  const password = Faker.internet.password();
-  // add variables to virtual user's context:
-  userContext.vars.name = name;
-  userContext.vars.email = email;
-  userContext.vars.password = password;
-  // continue with executing the scenario:
+const getOneHundredIDs = function(userContext, events, done) {
+  var id = Math.floor(Math.random() * 10000000 + 1)
+  userContext.vars.url = id;
   return done();
 }
 
-getOneHundredIDs();
+const getTopRatedRestaurants = function(userContext, events, done) {
+  var topRated = [ 9999903,9999725,9999448,9999369,9999298,9999124,9998871,9998826,9997915,
+  9997884,9997509,9996820,9996690,9996562,9996477,9996281,9995907,9995902,9995388,9995354,9995152,
+  9995142,9995091,9994727,9994215,9993528,9993429,9993426,9993282,9993225,9992884,9992854,9992433,
+  9992425,9992359,9992150,9992066,9991953,9991465,9991370,9991034,9990774,9990421,9990394,9989719,
+  9989716,9989672,9989499,9989410,9989308,9989085,9988668,9988654,9988652,9988033,9987897,9987823,
+  9987650,9987601,9987593,9987501,9987318,9987299,9986822,9986733,9986620,9986422,9986252,9986130,
+  9985947,9985245,9985042,9984997,9984710,9984561,9984055,9983921,9983828,9983644,9983495,9983386,
+  9982619,9982610,9981752,9981546,9981365,9981259,9981193,9981104,9981053,9980862,9980846,9980579,
+  9979933,9979896,9979872,9979714,9979323,9978698,9978308 ];
+  var index = Math.floor(Math.random() * 50 + 1)
+  userContext.vars.url = topRated[index];
+  return done();
+}
+
+
+module.exports = {getOneHundredIDs,getTopRatedRestaurants}
+// module.exports.getTopRestaurnatIds = getTopRestaurnatIds

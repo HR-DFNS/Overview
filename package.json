@@ -38,6 +38,7 @@
     "babel-preset-airbnb": "^2.4.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "bluebird": "^3.5.1",
     "cassandra-driver": "^3.4.1",
     "css-loader": "^0.28.10",
     "enzyme": "^3.3.0",

@@ -36,6 +36,7 @@ const actions = {
           corrected[0]['zagatService'] = corrected[0]['zagatservice']
           corrected[0]['longDescription'] = corrected[0]['longdescription']
           res.send(corrected);
+          redisCache.cache(corrected)
         }
       });
     }
@@ -53,6 +54,7 @@ const actions = {
           corrected[0]['zagatService'] = corrected[0]['zagatservice']
           corrected[0]['longDescription'] = corrected[0]['longdescription']
           res.send(corrected);
+          redisCache.cache(corrected)
         }
       });
     }

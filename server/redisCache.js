@@ -1,27 +1,32 @@
 const redis = require('redis');
-const r = require('./routes/requestHandler.js')
+const r = require('./routes/requestHandler.js');
+const Promise = require('bluebird');
 const mongodb = require('./../db/mongodb.js');
-//come back to this asap
-async function cacheTopRated () {
-	let topRated;
-	let topRatedIds = [];
-	async function dbCall () {
-		mongodb.getTopRated((err,data) => {
-		  if (err) {
-		    console.log(err)	
-		  } else {
-		  		topRated = data
-		  		topRated.forEach(function(element){
-		  		topRatedIds.push(element.id)
-				})
-		  }	
-		})
-	}
-	await dbCall().then(()=>{
-		return topRatedIds;
-}) 
+const letItRain = Promise.promisify(mongodb.getTopRated)
+// const chill = Promise.promisify(r.client.setex);
 
+
+const getTopRated = async function () {
+	var topRatedIds = [];
+	await letItRain().then(async function(data) {
+  await Promise.map(data,function(element){
+	  	topRatedIds.push(element.id)
+	  })
+	})
+	console.log(topRatedIds)
+	return topRatedIds;
 }
+
+const cacheTopRated = async function () {
+	await letItRain().then(async function(data) {
+	  await Promise.map(data,function(element){
+	  	r.client.setex(`${element.id}`, 8000, JSON.stringify(element));
+	  })
+	})
+}
+
+setInterval(cacheTopRated, 80001);
+
 
 module.exports = {
 
@@ -32,7 +37,7 @@ module.exports = {
 	    	throw err;
 	    } 
 	    if (data != null) {
-	      res.send(respond(restaurant, data));
+	      res.send(data);
 	    } else {
 	      next();
 	    }
@@ -40,10 +45,10 @@ module.exports = {
 	},
 	cache: function (data) {
 		if ((data[0].priceLevel === 2) && ((data[0].zagatFood + data[0].zagatDecor + data[0].zagatService) / 3 >= 3.5)) {
-			r.client.setex(`${data[0].id}`, 86400, `${data}`);
+			r.client.setex(`${data[0].id}`, 86400, JSON.stringify(data));
 		}
+		r.client.setex(`${data[0].id}`, 5, JSON.stringify(data));
 	}
 }
-// console.log(cacheTopRated().then(console.log('cool')))
-// module.exports = cacheTopRated;
 
+module.exports.getTopRated = getTopRated

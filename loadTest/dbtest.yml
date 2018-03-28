@@ -1,12 +1,32 @@
 config:
-  target: 'https://artillery.io'
+  target: 'http://localhost:3002'
   phases:
-    - duration: 60
-      arrivalRate: 20
-  defaults:
-    headers:
-      x-my-service-auth: '987401838271002188298567'
+    - duration: 10
+      arrivalRate: 10 
+      rampTo: 30 
+    - duration: 10
+      arrivalRate: 30  
+  processor: './artilleryScript.js'
+
 scenarios:
-  - flow:
-    - get:
-        url: "/docs"
+  - name: "random"
+    weight: 35
+    flow:
+      - function: "getOneHundredIDs"
+      - loop: 
+        - get:
+            url: "/api/restaurants/{{ url }}/overview"
+        count: 100
+      # - log: "{{ url }}"
+  - name: "top-restaurants"
+    weight: 65
+    flow:
+      - function: "getTopRatedRestaurants"
+      - loop: 
+        - get:
+            url: "/api/restaurants/{{ url }}/overview"
+        count: 100
+      # - log: "{{ url }}"
+
+
+
