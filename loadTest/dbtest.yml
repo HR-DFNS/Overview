@@ -1,0 +1,32 @@
+config:
+  target: 'http://localhost:3002'
+  phases:
+    - duration: 10
+      arrivalRate: 10 
+      rampTo: 30 
+    - duration: 10
+      arrivalRate: 30  
+  processor: './artilleryScript.js'
+
+scenarios:
+  - name: "random"
+    weight: 35
+    flow:
+      - function: "getOneHundredIDs"
+      - loop: 
+        - get:
+            url: "http://localhost:3000/restaurants/{{ url }}/"
+        count: 100
+      # - log: "{{ url }}"
+  - name: "top-restaurants"
+    weight: 65
+    flow:
+      - function: "getTopRatedRestaurants"
+      - loop: 
+        - get:
+            url: "http://localhost:3000/restaurants/{{ url }}/"
+        count: 100
+      # - log: "{{ url }}"
+
+
+
