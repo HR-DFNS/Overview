@@ -15,7 +15,7 @@ scenarios:
       - function: "getOneHundredIDs"
       - loop: 
         - get:
-            url: "/api/restaurants/{{ url }}/overview"
+            url: "http://localhost:3000/restaurants/{{ url }}/"
         count: 100
       # - log: "{{ url }}"
   - name: "top-restaurants"
@@ -24,7 +24,7 @@ scenarios:
       - function: "getTopRatedRestaurants"
       - loop: 
         - get:
-            url: "/api/restaurants/{{ url }}/overview"
+            url: "http://localhost:3000/restaurants/{{ url }}/"
         count: 100
       # - log: "{{ url }}"
 

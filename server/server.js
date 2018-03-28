@@ -1,6 +1,6 @@
+const nr = require('newrelic');
 const cassandra = require('cassandra-driver');
 const mongoose = require('mongoose');
-const nr = require('newrelic');
 const { Client } = require('pg');
 const redis = require('redis');
 const app = require('./app');
@@ -9,7 +9,7 @@ const dbAddress = process.env.DB_ADDRESS || 'localhost';
 
 
 mongoose.connect(`mongodb://${dbAddress}/wegot`);
-// mongoose.connect(`mongodb://18.220.15.167/wegot`);
+// mongoose.connect(`mongodb://18.216.80.18/wegot`);
 
 app.listen(3002, () => {
   console.log('Listening on port 3002');

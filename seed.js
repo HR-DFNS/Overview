@@ -3,14 +3,14 @@ const db = require('./db/mongodb.js');
 const fs = require('fs');
 const faker = require('faker');
 
-const file = fs.createWriteStream('./faked.json');
+const file = fs.createWriteStream('./fakedId.json');
 
 function seed(writer, callback) {
 
   let i = 10000001;
   let randomData = function (id) {
     return JSON.stringify({
-      id: id,
+      _id: id,
       name:faker.random.words(),
       tagline: faker.lorem.sentence(),
       type: 'Restaurant',
