@@ -70,7 +70,8 @@ faked2.json
 faked.json
 psqlData.csv
 fakedId.json
-
+#misc
+dump.rdb
 
 
 
