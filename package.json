@@ -13,7 +13,7 @@
     "dev": "webpack -d --watch",
     "test": "jest --coverage",
     "seed": "node seed.js",
-    "docker-start": "DB_ADDRESS=database node seed.js && DB_ADDRESS=database node server/server.js",
+    "deploy": "DB_ADDRESS=54.183.209.246 node server/server.js",
     "psql-login": "postgres -s -D /usr/local/var/postgres",
     "make-sql": "</db/psqlMaker.sql"
   },

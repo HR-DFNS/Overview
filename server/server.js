@@ -8,8 +8,8 @@ const app = require('./app');
 const dbAddress = process.env.DB_ADDRESS || 'localhost';
 
 
-mongoose.connect(`mongodb://${dbAddress}/wegot`);
-// mongoose.connect(`mongodb://18.216.80.18/wegot`);
+// mongoose.connect(`mongodb://${dbAddress}/wegot`);
+mongoose.connect(`mongodb://54.183.209.246/wegot`);
 
 app.listen(3002, () => {
   console.log('Listening on port 3002');
