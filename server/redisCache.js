@@ -44,8 +44,8 @@ module.exports = {
 		});
 	},
 	cache: function (data) {
-		if ((data[0].priceLevel === 2) && ((data[0].zagatFood + data[0].zagatDecor + data[0].zagatService) / 3 >= 3.5)) {
-			r.client.setex(`${data[0].id}`, 86400, JSON.stringify(data));
+		if ((data[0].priceLevel === 2) && ((data[0].zagatFood + data[0].zagatDecor + data[0].zagatService) / 3 >= 4)) {
+			r.client.setex(`${data[0].id}`, 604800, JSON.stringify(data));
 		}
 		r.client.setex(`${data[0].id}`, 5, JSON.stringify(data));
 	}

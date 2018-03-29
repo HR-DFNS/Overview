@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 app.use('/restaurants/:id', express.static('client/dist'));
 
 //routing with redis caching
-// app.get('/api/restaurants/:id/overview', redisCache.retreive, handler.mongoRequestHandler);
+app.get('/api/restaurants/:id/overview', redisCache.retreive, handler.mongoRequestHandler);
 //routing with out redis caching 
-app.get('/api/restaurants/:id/overview', handler.mongoRequestHandler);
+// app.get('/api/restaurants/:id/overview', handler.mongoRequestHandler);
 
 module.exports = app;
 
