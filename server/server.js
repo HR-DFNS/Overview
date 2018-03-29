@@ -9,7 +9,7 @@ const dbAddress = process.env.DB_ADDRESS || 'localhost';
 
 
 // mongoose.connect(`mongodb://${dbAddress}/wegot`);
-mongoose.connect(`mongodb://54.183.209.246/wegot`);
+mongoose.connect(`mongodb://52.53.156.140/wegot`);
 
 app.listen(3002, () => {
   console.log('Listening on port 3002');

@@ -4,7 +4,7 @@ const postgresdb = require('./../../db/postgresdb.js')
 const redis = require('redis');
 const redisCache = require('../redisCache.js')
 
-const redisClient = redis.createClient(6379,'54.215.135.80');
+const redisClient = redis.createClient(6379,'54.153.89.251');
 
 
 const actions = {

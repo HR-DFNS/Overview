@@ -3,7 +3,7 @@ const express = require('express');
 // const morgan = require('morgan');
 const cors = require('cors');
 const handler = require('./routes/requestHandler.js');
-const redisCache = require('./redisCache.js')
+const redisCache = require('./redisCache.js');
 
 
 const app = express();
