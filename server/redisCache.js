@@ -12,8 +12,8 @@ const getTopRated = async function () {
   await Promise.map(data,function(element){
 	  	topRatedIds.push(element.id)
 	  })
+  //.then this when you have time so that all the promises within promise.map can be resolved
 	})
-	console.log(topRatedIds)
 	return topRatedIds;
 }
 
@@ -24,8 +24,6 @@ const cacheTopRated = async function () {
 	  })
 	})
 }
-
-setInterval(cacheTopRated, 80001);
 
 
 module.exports = {
